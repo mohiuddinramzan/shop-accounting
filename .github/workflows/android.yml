@@ -28,8 +28,9 @@ jobs:
 
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
+        with:
+          packages: "platform-tools build-tools;34.0.0 platforms;android-34"
 
-      # The android/ native project is not committed to the repo — Capacitor generates it here.
       - name: Add Android platform (first run only)
         run: |
           if [ ! -d "android" ]; then
@@ -42,8 +43,6 @@ jobs:
       - name: Grant execute permission to gradlew
         run: chmod +x android/gradlew
 
-      # This builds an unsigned DEBUG APK, which needs no signing secrets and installs directly
-      # on a device/emulator for testing. See README.md "Release signing" for a signed release build.
       - name: Build debug APK
         working-directory: android
         run: ./gradlew assembleDebug --no-daemon
