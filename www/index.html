@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="bn" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0f766e">
+<title>দোকান হিসাব — Shop Accounting</title>
+<link rel="stylesheet" href="src/css/style.css">
+<link rel="stylesheet" href="src/css/components.css">
+<link rel="stylesheet" href="src/css/responsive.css">
+</head>
+<body>
+  <div id="app">
+    <header class="app-header">
+      <div class="app-title">🏪 দোকান হিসাব</div>
+    </header>
+
+    <main id="view" class="app-view"></main>
+
+    <div id="toast-host" class="toast-host"></div>
+
+    <div id="more-overlay" class="more-overlay"></div>
+    <nav id="more-menu" class="more-menu">
+      <a href="#" data-route="purchases">📦 ক্রয়</a>
+      <a href="#" data-route="expenses">💸 খরচ</a>
+      <a href="#" data-route="customers">🧑‍🤝‍🧑 কাস্টমার</a>
+      <a href="#" data-route="suppliers">🚚 সাপ্লায়ার</a>
+      <a href="#" data-route="payments">💰 পেমেন্ট</a>
+      <a href="#" data-route="transactions">🧾 লেনদেন ইতিহাস</a>
+      <a href="#" data-route="settings">⚙️ সেটিংস</a>
+    </nav>
+
+    <nav class="bottom-nav">
+      <button data-route="dashboard" data-nav="dashboard"><span>🏠</span><small>হোম</small></button>
+      <button data-route="sales" data-nav="sales"><span>🛒</span><small>বিক্রয়</small></button>
+      <button data-route="products" data-nav="products"><span>📋</span><small>পণ্য</small></button>
+      <button data-route="reports" data-nav="reports"><span>📊</span><small>রিপোর্ট</small></button>
+      <button id="nav-more-btn" data-nav="more"><span>☰</span><small>আরও</small></button>
+    </nav>
+  </div>
+
+  <script src="src/js/utils.js"></script>
+  <script src="src/js/db.js"></script>
+  <script src="src/js/state.js"></script>
+  <script src="src/js/accounting.js"></script>
+  <script src="src/js/products.js"></script>
+  <script src="src/js/customers.js"></script>
+  <script src="src/js/suppliers.js"></script>
+  <script src="src/js/sales.js"></script>
+  <script src="src/js/purchases.js"></script>
+  <script src="src/js/expenses.js"></script>
+  <script src="src/js/payments.js"></script>
+  <script src="src/js/reports.js"></script>
+  <script src="src/js/transactions.js"></script>
+  <script src="src/js/backup.js"></script>
+  <script src="src/js/app.js"></script>
+</body>
+</html>

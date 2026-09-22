@@ -1,0 +1,19 @@
+{
+  "name": "shop-accounting",
+  "version": "1.0.0",
+  "description": "ছোট দোকানের জন্য সম্পূর্ণ অফলাইন হিসাব রাখার Android অ্যাপ — বিক্রয়, ক্রয়, খরচ, স্টক, কাস্টমার/সাপ্লায়ার হিসাব, রিপোর্ট ও ব্যাকআপ।",
+  "private": true,
+  "scripts": {
+    "android:add": "npx cap add android",
+    "android:sync": "npx cap sync android",
+    "android:open": "npx cap open android",
+    "android:build": "cd android && ./gradlew assembleDebug"
+  },
+  "dependencies": {
+    "@capacitor/android": "^6.1.2",
+    "@capacitor/core": "^6.1.2"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^6.1.2"
+  }
+}

@@ -1,0 +1,21 @@
+/* responsive.css — small phones and wider screens */
+
+@media (max-width: 360px) {
+  :root { font-size: 15px; }
+  .grid-2 { grid-template-columns: 1fr; }
+  .quick-actions { flex-direction: column; }
+}
+
+@media (min-width: 700px) {
+  #app { border-left: 1px solid var(--border); border-right: 1px solid var(--border); box-shadow: var(--shadow); }
+}
+
+@media (max-width: 420px) {
+  .form-row { flex-direction: column; }
+  .modal-box { max-width: 100%; }
+}
+
+/* Very small height devices: shrink header a touch so forms stay reachable above the keyboard */
+@media (max-height: 560px) {
+  :root { --header-h: 48px; --nav-h: 56px; }
+}

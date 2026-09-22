@@ -1,0 +1,12 @@
+{
+  "appId": "com.shopaccounting.app",
+  "appName": "দোকান হিসাব",
+  "webDir": "www",
+  "bundledWebRuntime": false,
+  "android": {
+    "allowMixedContent": false
+  },
+  "server": {
+    "androidScheme": "https"
+  }
+}
