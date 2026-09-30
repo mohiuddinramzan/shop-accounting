@@ -5,6 +5,10 @@ on:
     branches: [ main, master ]
   workflow_dispatch: {}
 
+# Release তৈরি/আপডেট করার জন্য লেখার অনুমতি লাগে
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -37,6 +41,21 @@ jobs:
             npx cap add android
           fi
 
+      - name: Apply custom app icon
+        run: |
+          RES=android/app/src/main/res
+          # নতুন আইকন বসানো
+          for d in android-icon-assets/mipmap-*; do
+            n=$(basename "$d")
+            mkdir -p "$RES/$n"
+            cp "$d"/ic_launcher.png "$d"/ic_launcher_round.png "$RES/$n/"
+          done
+          # ডিফল্ট adaptive icon সরানো (নাহলে নতুন Android-এ পুরোনো আইকনই দেখায়)
+          rm -rf "$RES/mipmap-anydpi-v26"
+          rm -f "$RES"/mipmap-*/ic_launcher_foreground.png
+          rm -f "$RES/drawable-v24/ic_launcher_foreground.xml"
+          rm -f "$RES/drawable/ic_launcher_background.xml"
+
       - name: Sync web assets into Android project
         run: npx cap sync android
 
@@ -53,3 +72,22 @@ jobs:
           name: shop-accounting-debug-apk
           path: android/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
+
+      - name: Move 'latest' tag to this commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag -f latest
+          git push -f origin latest
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: দোকান হিসাব - Latest APK
+          body: "সর্বশেষ build (#${{ github.run_number }}). নিচের app-debug.apk ডাউনলোড করে ইনস্টল করুন।"
+          files: android/app/build/outputs/apk/debug/app-debug.apk
+          overwrite_files: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
